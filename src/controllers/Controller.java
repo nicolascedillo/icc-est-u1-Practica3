@@ -1,6 +1,9 @@
 package controllers;
 
 import views.*;
+
+import java.util.Scanner;
+
 import models.*;
 
 public class Controller {
@@ -8,17 +11,21 @@ public class Controller {
     private Person[] personas;
     private SortingMethods sortingMethods;
     private SearchMethods searchMethods;
+    private Scanner sc = new Scanner(System.in);
+    private int cantidad;
 
     //Constructor
-    public Controller(View view, SortingMethods sortingMethods, SearchMethods searchMethods) {
+    public Controller(View view, SortingMethods sortingMethods, SearchMethods searchMethods, int cantidad) {
         this.view = view;
         this.sortingMethods = sortingMethods;
         this.searchMethods = searchMethods;
-        this.personas = new Person[10];
+        this.cantidad = cantidad;
+        this.personas = new Person[cantidad];
     }
 
+    //Start del programa
     public void start(){
-        boolean ejecutando = true;
+        boolean ejecutando = true; 
         while (ejecutando) {
             int opcion = view.showMenu();
             switch (opcion) {
@@ -44,13 +51,15 @@ public class Controller {
         }
     }
 
+    //Guarda las personas en el arreglo
     public void inputPersons(){
-        System.out.println("Ingrese 10 personas: ");
-        for (int i = 0; i<10;i++){
+        
+        for (int i = 0; i<getCantidad();i++){
             personas[i]= view.inputPerson();
         }
     }
 
+    //Ordena las personas según se quiera
     public void sortPersons() {
         int opcion = view.selecSortingMethod();
         switch (opcion) {
@@ -67,13 +76,15 @@ public class Controller {
              sortingMethods.sortByNameWithInsertion(personas);
              break;
             default:
-             System.out.println("Opción inválida.");
+             System.out.println("Opción invalida.");
+             break;
         }
     }
 
+    //Aplica busqueda binaria para encontrar a la persona, antes verifica si ya está ordenado
     public void searchPerson() {
-        int criterio = view.selectSearchCriterion();
-        if (criterio == 1) { 
+        int metodo = view.selectSearchCriterion();
+        if (metodo == 1) { 
 
             if (!searchMethods.isSortedByAge(personas)) {
                 System.out.println("No esta ordenada por edad");
@@ -84,7 +95,7 @@ public class Controller {
             Person resultado = searchMethods.binarySearchByAge(personas, edad);
             view.displaySearchResult(resultado);
 
-        } else if (criterio == 2) {
+        } else if (metodo == 2) {
 
             if (!searchMethods.isSortedByName(personas)) {
                 System.out.println("No está ordenada por nombre");
@@ -96,9 +107,18 @@ public class Controller {
             view.displaySearchResult(resultado);
 
         } else {
-
             System.out.println("Ingrese 1 o 2");
         }
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    
     
 }

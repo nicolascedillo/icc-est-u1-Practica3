@@ -4,6 +4,7 @@ import models.*;
 
 public class SortingMethods {
 
+    //Ordena por el nombre con burbuja
     public void sortByNameWithBubble(Person[] personas){
         int n = personas.length;
         for (int i = 0; i < n-1; i++){
@@ -17,6 +18,7 @@ public class SortingMethods {
         }
     }
 
+    //Ordena por el nombre con seleccion
     public void sortByNameWithSelection(Person[] personas){
         int n = personas.length;
         for (int i = 0; i<n-1;i++){
@@ -34,6 +36,7 @@ public class SortingMethods {
         }
     }
 
+    //Ordena por el nombre con insercion
     public void sortByNameWithInsertion(Person[] personas){
         int n = personas.length;
         for (int i = 1; i<n; i++){
@@ -47,6 +50,7 @@ public class SortingMethods {
         }
     }
 
+    //Ordena por la edad con insercion
     public void sortByAgeWithInsertion(Person[] personas){
         int n = personas.length;
         for (int i = 1; i<n; i++){
