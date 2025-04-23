@@ -41,7 +41,7 @@ public class SearchMethods {
     public boolean isSortedByName (Person[] personas){
         int n = personas.length;
         for (int i = 0; i<n-1; i++){
-            if (personas[i].getName().compareTo(personas[i+1].getName())>0) {
+            if (personas[i].getName().compareTo(personas[i+1].getName()) > 0) {
                 return false;
             }
         }

@@ -39,7 +39,7 @@ public class SortingMethods {
         for (int i = 1; i<n; i++){
             Person aux = personas[i];
             int j = i-1;
-            while (j >= 0 && personas[j].getName().compareTo(aux.getName()) < 0) {
+            while (j >= 0 && personas[j].getName().compareTo(aux.getName()) > 0) {
                 personas[j+1] = personas[j];
                 j--;
             }
@@ -52,12 +52,11 @@ public class SortingMethods {
         for (int i = 1; i<n; i++){
             Person aux = personas[i];
             int j = i-1;
-            while (j >= 0 && personas[j].getAge() < aux.getAge() ) {
+            while (j >= 0 && personas[j].getAge() > aux.getAge() ) {
                 personas[j+1] = personas[j];
                 j--;
             }
             personas[j+1] = aux;
         }
-
     }
 }
